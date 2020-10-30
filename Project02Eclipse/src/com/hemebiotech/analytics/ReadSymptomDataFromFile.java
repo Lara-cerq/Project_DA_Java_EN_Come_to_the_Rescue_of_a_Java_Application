@@ -28,8 +28,10 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 		this.filepath = filepath;
 	}
 
-//	Map<String, Integer> symptoms = new HashMap<>();
-
+	/**
+	 * GetSymptoms() reads the file and returns a list of symptoms if the file is
+	 * available
+	 */
 	@Override
 	public List<String> GetSymptoms() throws IOException {
 		ArrayList<String> result = new ArrayList<String>();
@@ -44,10 +46,8 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				}
 				reader.close();
 			} catch (FileNotFoundException exc) {
-				System.out.println("Erreur d'ouverture");
+				System.out.println("Opening error");
 			}
-//			symptoms.forEach(ReadSymptomDataFromFile::print); // afiche le nombre de fois qu'un symptom est present dans
-//																// le document
 		}
 		return result;
 	}
