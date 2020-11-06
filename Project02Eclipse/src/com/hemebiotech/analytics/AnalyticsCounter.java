@@ -10,20 +10,26 @@ import java.util.TreeMap;
 
 public class AnalyticsCounter {
 
+	private Map<String, Integer> symptoms = new TreeMap<>();
 
 	public static void main(String args[]) throws Exception {
 
 		AnalyticsCounter analyticsCount = new AnalyticsCounter();
-		analyticsCount.run(); //calls run() to read and write data
+		analyticsCount.run(); // calls run() to read and write data
 	}
 
-	Map<String, Integer> symptoms = new TreeMap<>();
+	/**
+	 * print allows to display the list of symtoms and its number
+	 */
+	public static void print(String symptoms, Integer value) {
+		System.out.println(symptoms + "=" + value);
+	}
 
 	/**
 	 * run() allows to open the file symptoms.txt, create a symptomsList and calls
 	 * the writeFile() method
 	 */
-	public void run() {
+	private void run() {
 		ReadSymptomDataFromFile readSymtom = new ReadSymptomDataFromFile("symptoms.txt");
 		List<String> symptomsList;
 		try {
@@ -37,7 +43,7 @@ public class AnalyticsCounter {
 		try {
 			this.writeFile();
 		} catch (IOException e) {
-			System.err.println();
+			System.err.println("Impossible to write in the file!" + e.getMessage());
 		}
 	}
 
@@ -48,7 +54,7 @@ public class AnalyticsCounter {
 	 * @param symptomsList
 	 * @return
 	 */
-	public Map<String, Integer> analyseFile(List<String> symptomsList) {
+	private void analyseFile(List<String> symptomsList) {
 
 		for (String readSymptom : symptomsList) {
 			Integer count = symptoms.get(readSymptom);
@@ -56,23 +62,16 @@ public class AnalyticsCounter {
 		}
 
 		symptoms.forEach(AnalyticsCounter::print);
-		return symptoms;
-	}
-
-	/**
-	 * print allows to display the list of symtoms and its number
-	 */
-	public static void print(String symptoms, Integer value) {
-		System.out.println(symptoms + "=" + value);
 	}
 
 	/**
 	 * writeFile() create a new file results.out and written inside the list of
 	 * symptoms and its number
+	 * 
 	 * @return the TreeMap symptoms (list of symptoms+number)
 	 * @throws IOException
 	 */
-	public Map<String, Integer> writeFile() throws IOException {
+	private void writeFile() throws IOException {
 		FileWriter writer = new FileWriter("results.out");
 		BufferedWriter out = new BufferedWriter(writer);
 		for (Entry<String, Integer> m : symptoms.entrySet()) {
@@ -80,6 +79,5 @@ public class AnalyticsCounter {
 		}
 
 		out.close();
-		return symptoms;
 	}
 }
