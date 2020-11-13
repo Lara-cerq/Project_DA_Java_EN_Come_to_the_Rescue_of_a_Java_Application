@@ -19,7 +19,9 @@ public class AnalyticsCounter {
 	}
 
 	/**
-	 * print allows to display the list of symtoms and its number
+	 * print allows to display the list of symptoms and its number
+	 * @param symptoms
+	 * @param value
 	 */
 	public static void print(String symptoms, Integer value) {
 		System.out.println(symptoms + "=" + value);
@@ -33,7 +35,7 @@ public class AnalyticsCounter {
 		ReadSymptomDataFromFile readSymtom = new ReadSymptomDataFromFile("symptoms.txt");
 		List<String> symptomsList;
 		try {
-			symptomsList = readSymtom.GetSymptoms();
+			symptomsList = readSymtom.getSymptoms();
 		} catch (IOException e) {
 			System.err.println("Impossible to open the file!" + e.getMessage());
 			return;

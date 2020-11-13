@@ -33,7 +33,7 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 	 * available
 	 */
 	@Override
-	public List<String> GetSymptoms() throws IOException {
+	public List<String> getSymptoms() throws IOException {
 		ArrayList<String> result = new ArrayList<String>();
 		if (filepath != null) {
 			try {

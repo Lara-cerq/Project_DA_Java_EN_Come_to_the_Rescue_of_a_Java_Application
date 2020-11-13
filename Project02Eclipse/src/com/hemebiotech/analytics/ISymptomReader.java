@@ -19,6 +19,6 @@ public interface ISymptomReader {
 	 * @return a raw listing of all Symptoms obtained from a data source, duplicates are possible/probable
 	 * @throws IOException 
 	 */
-	public List<String> GetSymptoms () throws IOException;
+	public List<String> getSymptoms () throws IOException;
 	
 }
